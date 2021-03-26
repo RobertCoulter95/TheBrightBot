@@ -1,0 +1,2 @@
+# TheBrightBot
+A Discord Bot
