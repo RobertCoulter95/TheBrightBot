@@ -13,15 +13,14 @@ GUILD = os.getenv('DISCORD_GUILD')
 bot = commands.Bot(command_prefix='!')
 
 # load cogs
-startup_extensions = ['cogs.utils', 'cogs.community']
+startup_extensions = ['cogs.utils', 'cogs.community', 'cogs.administration_utils']
 for extension in startup_extensions:
     bot.load_extension(extension)
 
 
 @bot.event
 async def on_ready():
-    print('Logged in as')
-    print(bot.user.name)
+    print('Logged in as ' + bot.user.name)
     print(bot.user.id)
     print('------')
 
@@ -45,9 +44,9 @@ async def on_command_error(ctx, error):
     if isinstance(error, commands.errors.CheckFailure):
         await ctx.send('You do not have the correct role for this command.')
     if isinstance(error, commands.errors.MissingRequiredArgument):
-        await ctx.send('Stuff broke')
+        await ctx.send('Command missing required argument(s).')
     if isinstance(error, commands.errors.CommandNotFound):
-        await ctx.send('That no exist')
+        await ctx.send('That command does not exist.')
 
 
 bot.run(TOKEN)

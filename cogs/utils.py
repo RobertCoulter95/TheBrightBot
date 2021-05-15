@@ -14,7 +14,7 @@ class Utils(commands.Cog):
     # dice rolling, takes two params
     @commands.command(name='roll', help='Rolls dice. Two inputs <number of dice> <number of sides>')
     async def roll(self, ctx, number_of_dice: int, number_of_sides: int):
-        if not number_of_dice and not number_of_sides:
+        if not number_of_dice or not number_of_sides:
             await ctx.send("Format should be !command <number of Dice> <number of sides>")
         dice = [
             str(random.choice(range(1, number_of_sides + 1)))

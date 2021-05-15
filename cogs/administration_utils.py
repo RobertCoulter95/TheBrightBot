@@ -23,6 +23,12 @@ class AdministrationUtils(commands.Cog):
         else:
             ctx.send('That channel already exists.')
 
+    @commands.command(name='stop')
+    @commands.has_role('admin')
+    async def create_channel(self, ctx):
+        await ctx.send('Shutting Down')
+        await self.bot.logout()
+
     @bot.event
     async def on_member_join(self, member):
         channel = discord.utils.get(member.guild.text_channels, name="welcome")
